@@ -1,4 +1,4 @@
-# Predictors of VICEROY Scholar Selection
+# Predictors of Scholar Selection
 
 **Author:** Morgan Baker
 
@@ -6,9 +6,7 @@
 
 ## Overview
 
-This repository documents a working research project investigating which factors
-influence selection into the Griffiss Institute's cyber workforce development
-pipeline, VICEROY. 
+This repository documents a working research project investigating which factors influence selection into the a cyber workforce development program that connects students to internships in the defense space. 
 
 The project begins with data cleaning and exploratory analysis, then quantifies
 how much of selection outcome is explained by institutional context versus
