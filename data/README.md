@@ -2,7 +2,7 @@
 
 The data files in this directory are **not included in the repository** — they contain
 student applicant records from the VICEROY Scholar Application system and are proprietary
-to the Griffiss Institute / DoD STEM program.
+to the Griffiss Institute.
 
 ---
 
