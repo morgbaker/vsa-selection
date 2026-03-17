@@ -87,5 +87,5 @@ See [`requirements.txt`](requirements.txt) for full dependencies.
 
 ## AI Assistance
 
-This project was developed with Claude (Anthropic) as a collaborative tool.
+This project was developed using Claude (Anthropic) as a collaborative tool.
 AI assisted with code generation and iterative debugging throughout the analysis pipeline. All analytical decisions including model selection, eligibility definitions, and interpretation of findings were directed by the author.
