@@ -52,7 +52,7 @@ Reproducible cleaning pipeline from raw Excel export to analysis-ready CSV.
 - Output: `data/processed/vsa_data_cleaned.csv`
 
 ### [`03_selection_analysis.ipynb`](notebooks/03_institutional_vs_individual.ipynb)
-Structural diagnosis and multivariate modeling of VICEROY selection.
+Structural diagnosis and multivariate modeling of selection.
 - Eligibility definition: GPA ≥ 3.2, US citizen, partner institution 
 - ICC decomposition
 - Cluster size distribution 
