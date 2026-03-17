@@ -27,8 +27,8 @@ to the Griffiss Institute.
 | `StudentID` | str | Anonymized applicant identifier |
 | `Institution` | str | Partner university name |
 | `GPA` | float | Self-reported; "No GPA yet" → NaN; 0 → NaN |
-| `DegreeType` | str | Bachelor's (88%), Master's (7%), other |
-| `Discipline` | str | 96% CS or Cybersecurity |
+| `DegreeType` | str | Bachelor's, Master's, other |
+| `Discipline` | str | Mostly CS or Cybersecurity |
 | `Sex` | str | Male / Female / Prefer not to say |
 | `Race` | str | IPEDS race categories |
 | `Ethnicity` | str | Hispanic or Latino / Not Hispanic |
