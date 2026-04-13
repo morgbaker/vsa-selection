@@ -10,8 +10,8 @@ This repository documents a working research project investigating which factors
 
 The project begins with data cleaning and exploratory analysis, then quantifies
 how much of selection outcome is explained by institutional context versus
-individual characteristics, and fits a population-averaged logistic model to
-estimate individual-level effects within that structure.
+individual characteristics, and fits a linear probability model with institution
+fixed effects to estimate individual-level effects within that structure.
 
 The raw applicant data is proprietary and not included. See [`data/README.md`](data/README.md) for the full schema.
 
@@ -23,7 +23,7 @@ The raw applicant data is proprietary and not included. See [`data/README.md`](d
 notebooks/
     01_EDA.ipynb                          
     02_data_cleaning.ipynb            
-    03_selection_analysis.ipynb 
+    03_selection_model.ipynb 
 
 src/
     model_acceptance.py     
@@ -51,13 +51,15 @@ Reproducible cleaning pipeline from raw Excel export to analysis-ready CSV.
 - Discipline/major consolidation
 - Output: `data/processed/vsa_data_cleaned.csv`
 
-### [`03_selection_analysis.ipynb`](notebooks/03_institutional_vs_individual.ipynb)
-Structural diagnosis and multivariate modeling of selection.
-- Eligibility definition: GPA ≥ 3.2, US citizen, partner institution 
-- ICC decomposition
-- Cluster size distribution 
-- Bivariate GEE odds ratio screening across all student-level predictors
-- Joint GEE model 
+### [`03_selection_model.ipynb`](notebooks/03_selection_model.ipynb)
+Structural diagnosis and primary inferential analysis of VICEROY selection.
+- Eligibility definition: GPA ≥ 3.2, US citizen, partner institution
+- ICC decomposition: quantifies between- vs. within-institution variance
+- Cluster size and acceptance rate distributions across competitive institutions
+- Part 1 — LPM testing whether non-competitive school attendance (0%/100% acceptance rate) is predicted by individual characteristics; validates sample restriction as a capacity decision
+- Part 2 — LPM with institution fixed effects and clustered SEs on competitive sample; logistic regression reported as robustness check
+- mil_affil deep-dive: acceptance by ROTC branch, within-institution scatter, GPA overlap
+- Sensitivity: threshold robustness check (10%/90% exclusion boundary)
 
 ---
 
@@ -65,19 +67,17 @@ Structural diagnosis and multivariate modeling of selection.
 
 Central modeling module. Key components:
 
-- **`engineer_student_features`** / **`engineer_military_features`** — derives binary and ordinal predictors from raw VSA columns (GPA coercion, citizenship flag,ROTC branch indicators, DoD scholar flag)
-- **`compute_icc`** — one-way ANOVA ICC decomposition; primary justification for GEE over naive logistic regression
-- **`run_gee_logistic`** — population-averaged logistic GEE clustered by institution; exchangeable or independence working correlation; GPA mean-centered before fitting
-- **`gee_or_table`** — tidy odds ratio / CI / p-value output from a fitted GEE result
+- **`engineer_student_features`** / **`engineer_military_features`** — derives binary and ordinal predictors from raw VSA columns (GPA coercion, citizenship flag, ROTC branch indicators, DoD scholar flag)
+- **`compute_icc`** — one-way ANOVA ICC decomposition; quantifies the share of outcome variance attributable to institution membership
+- **`merge_ipeds`** — left-joins VSA applicant records to IPEDS institutional characteristics on institution name
 
 ---
 
 ## Technical Stack
 
 - Python 3.10+, pandas, numpy, scipy, statsmodels, matplotlib, seaborn
-- GEE models (exchangeable and independence working correlations, QIC-based
-  comparison) via `statsmodels.genmod.generalized_estimating_equations`
-- IPEDS data fetched via NCES API (`src/fetch_ipeds.py`)
+- LPM and logistic regression with institution fixed effects and clustered standard errors via `statsmodels.formula.api`
+- IPEDS data fetched via Urban Institute Education Data API (`src/fetch_ipeds.py`)
 
 See [`requirements.txt`](requirements.txt) for full dependencies.
 
