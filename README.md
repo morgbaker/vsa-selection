@@ -1,4 +1,4 @@
-# Predictors of VICEROY Scholar Selection
+# Predictors of Scholar Selection
 
 **Author:** Morgan Baker
 
@@ -6,9 +6,7 @@
 
 ## Overview
 
-This repository documents a working research project investigating which factors
-influence selection into the Griffiss Institute's cyber workforce development
-pipeline, VICEROY. 
+This repository documents a working research project investigating which factors influence selection into the a cyber workforce development program that connects students to internships in the defense space. 
 
 The project begins with data cleaning and exploratory analysis, then quantifies
 how much of selection outcome is explained by institutional context versus
@@ -53,8 +51,8 @@ Reproducible cleaning pipeline from raw Excel export to analysis-ready CSV.
 - Discipline/major consolidation
 - Output: `data/processed/vsa_data_cleaned.csv`
 
-### [`03_institutional_vs_individual.ipynb`](notebooks/03_institutional_vs_individual.ipynb)
-Structural diagnosis and multivariate modeling of VICEROY selection.
+### [`03_selection_analysis.ipynb`](notebooks/03_institutional_vs_individual.ipynb)
+Structural diagnosis and multivariate modeling of selection.
 - Eligibility definition: GPA ≥ 3.2, US citizen, partner institution 
 - ICC decomposition
 - Cluster size distribution 
@@ -87,5 +85,5 @@ See [`requirements.txt`](requirements.txt) for full dependencies.
 
 ## AI Assistance
 
-This project was developed with Claude (Anthropic) as a collaborative tool.
+This project was developed using Claude (Anthropic) as a collaborative tool.
 AI assisted with code generation and iterative debugging throughout the analysis pipeline. All analytical decisions including model selection, eligibility definitions, and interpretation of findings were directed by the author.

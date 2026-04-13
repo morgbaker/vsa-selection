@@ -173,7 +173,7 @@ def engineer_ipeds_extended(ipeds: pd.DataFrame) -> pd.DataFrame:
 
 
 # Merge
-def merge_ipeds(vsa: pd.DataFrame, ipeds: pd.DataFrame) -> pd.DataFrame:
+def merge_ipeds(vsa: pd.DataFrame, ipeds: pd.DataFrame, verbose: bool = False) -> pd.DataFrame:
     """
     Left-join VSA with IPEDS on Institution / school_name.
 
@@ -190,7 +190,7 @@ def merge_ipeds(vsa: pd.DataFrame, ipeds: pd.DataFrame) -> pd.DataFrame:
         how="left",
     )
     unmatched = merged.loc[merged["hbcu"].isna(), "Institution"].unique()
-    if len(unmatched):
+    if verbose and len(unmatched):
         print(f"⚠️  {len(unmatched)} institutions unmatched to IPEDS "
               f"({merged['hbcu'].isna().sum()} applicants excluded from merged models):")
         for s in sorted(unmatched):
